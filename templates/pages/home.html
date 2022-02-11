@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% load static %}
+
+
+<div id="carouselExampleIndicators" class="carousel carousel-container slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'img/dog13.jpg' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'img/dog12.jpg' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'img/dog11.jpg' %}" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<div class="Team-container">
+    <div class="row">
+        <div class="col-12 center">
+            <div class="team-header">
+                <h1>The Team</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% for team in teams %}
+        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <div class="card team-card" style="width: 18rem;">
+                <img src="{{team.photo.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{team.first_name}} {{team.last_name}}</h5>
+                    <p class="card-text">{{team.designation}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<div class="Search-container">
+    <div class="row">
+        <div class="col-12">
+            <div class="widget advanced-search2">
+                <h3 class="sidebar-title">Search your desired furry friend</h3>
+                <form method="GET">
+
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Dogs & Cats</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                    </div>
+
+                    <div class="form-group">
+                        <select class="form-control form-control-lg">
+                            <option>Brand</option>
+                            <option>Any</option>
+                            <option>New</option>
+                            <option>Semi-New</option>
+                            <option>Damaged</option>
+                            <option>Used</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control form-control-lg">
+                            <option>Brand</option>
+                            <option>Any</option>
+                            <option>New</option>
+                            <option>Semi-New</option>
+                            <option>Damaged</option>
+                            <option>Used</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control form-control-lg">
+                            <option>Brand</option>
+                            <option>Any</option>
+                            <option>New</option>
+                            <option>Semi-New</option>
+                            <option>Damaged</option>
+                            <option>Used</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control form-control-lg">
+                            <option>Brand</option>
+                            <option>Any</option>
+                            <option>New</option>
+                            <option>Semi-New</option>
+                            <option>Damaged</option>
+                            <option>Used</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control form-control-lg">
+                            <option>Brand</option>
+                            <option>Any</option>
+                            <option>New</option>
+                            <option>Semi-New</option>
+                            <option>Damaged</option>
+                            <option>Used</option>
+                        </select>
+                    </div>
+                    <!-- <div class="range-slider clearfix">
+                            <label>Price</label>
+                            <div data-min="0" data-max="150000" data-min-name="min_price" data-max-name="max_price" data-unit="USD"
+                                class="range-slider-ui ui-slider" aria-disabled="false"></div>
+                            <div class="clearfix"></div>
+                        </div> -->
+                    <div class="form-group mb-0">
+                        <button class="search-button btn-primary">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="Featured-container">
+    <div class="row">
+        <div class="col-12">
+            <div class="Featured-header">
+                <h1>Featured Pets</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
+            <div class="card Featured-card Pet-card">
+                <img class=" card-img-top" src="{% static 'img/german shepherd.jpg' %}" alt="Card image cap"
+                    style="min-height:262px; max-height: 262px;">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
+            <div class="card Featured-card Pet-card">
+                <img class=" card-img-top" src="{% static 'img/husky.jpg' %}" alt="Card image cap"
+                    style="min-height:262px; max-height: 262px;">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
+            <div class="card Featured-card Pet-card">
+                <img class=" card-img-top" src="{% static 'img/labrador puppy.jpg' %}" alt="Card image cap"
+                    style="min-height:262px; max-height: 262px;">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
+            <div class="card Featured-card Pet-card">
+                <img class=" card-img-top" src="{% static 'img/Old English Sheep Dog.jpg' %}" alt="Card image cap"
+                    style="min-height:262px; max-height: 262px;">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
+            <div class="card Featured-card Pet-card">
+                <img class=" card-img-top" src="{% static 'img/Pitbulll.jpg' %}" alt="Card image cap"
+                    style="min-height:262px; max-height: 262px;">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
+            <div class="card Featured-card Pet-card">
+                <img class=" card-img-top" src="{% static 'img/pomeranian.jpg' %}" alt="Card image cap"
+                    style="min-height:262px; max-height: 262px;">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
+            <div class="card Featured-card Pet-card">
+                <img class=" card-img-top" src="{% static 'img/poodle mix.jpg' %}" alt="Card image cap"
+                    style="min-height:262px; max-height: 262px;">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
+            <div class="card Featured-card Pet-card">
+                <img class=" card-img-top" src="{% static 'img/welsh corgi.jpg' %}" alt="Card image cap"
+                    style="min-height:262px; max-height: 262px;">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

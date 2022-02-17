@@ -16,3 +16,8 @@ $('.slick-carousel').each(function () {
         slider.slick('slickNext');
     });
 });
+
+
+setTimeout(function () {
+    $('#message').fadeOut('slow');
+}, 4000)

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% block title %} | Contact {% endblock %}
 
 {% block content %}
 
@@ -17,25 +18,27 @@
 
         <!--Grid column-->
         <div class="col-md-9 mb-md-0 mb-5">
-            <form id="contact-form" name="contact-form" action="mail.php" method="POST">
-
+            <form name="contact-form" action="{% url 'contact' %}" method="POST">
+                {% include 'includes/messages.html' %}
+                {% csrf_token %}
                 <!--Grid row-->
                 <div class="row">
 
                     <!--Grid column-->
                     <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <input type="text" id="name" name="name" class="form-control">
-                            <label for="name" class="">Your name</label>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Your Name</label>
+                            <input name="name" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Your Name" required>
                         </div>
                     </div>
                     <!--Grid column-->
 
                     <!--Grid column-->
                     <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <input type="text" id="email" name="email" class="form-control">
-                            <label for="email" class="">Your email</label>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                            <input name="email" class="form-control" placeholder="name@example.com" required>
                         </div>
                     </div>
                     <!--Grid column-->
@@ -45,10 +48,16 @@
 
                 <!--Grid row-->
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="md-form mb-0">
-                            <input type="text" id="subject" name="subject" class="form-control">
-                            <label for="subject" class="">Subject</label>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Subject</label>
+                            <input name="subject" class="form-control" id="exampleFormControlInput1" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Phone Number</label>
+                            <input name="phone" class="form-control" required>
                         </div>
                     </div>
                 </div>
@@ -60,22 +69,18 @@
                     <!--Grid column-->
                     <div class="col-md-12">
 
-                        <div class="md-form">
-                            <textarea type="text" id="message" name="message" rows="2"
-                                class="form-control md-textarea"></textarea>
-                            <label for="message">Your message</label>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                            <textarea name="message" class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                required></textarea>
                         </div>
 
                     </div>
                 </div>
                 <!--Grid row-->
 
+                <button type="submit" class="btn btn-primary">Send Message</button>
             </form>
-
-            <div class="text-center text-md-left">
-                <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a>
-            </div>
-            <div class="status"></div>
         </div>
         <!--Grid column-->
 

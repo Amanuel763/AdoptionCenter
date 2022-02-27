@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 
+
+{% block title %} | Home {% endblock %}
 {% block content %}
 
 
 {% load static %}
+
+{% include 'includes/messages.html' %}
 
 
 <div id="carouselExampleIndicators" class="carousel carousel-container slide" data-bs-ride="carousel">
@@ -16,6 +20,7 @@
             aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
+
         <div class="carousel-item active">
             <img src="{% static 'img/dog13.jpg' %}" class="d-block w-100" alt="...">
         </div>
@@ -63,83 +68,6 @@
 </div>
 
 
-<div class="Search-container">
-    <div class="row">
-        <div class="col-12">
-            <div class="widget advanced-search2">
-                <h3 class="sidebar-title">Search your desired furry friend</h3>
-                <form method="GET">
-
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">Dogs & Cats</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
-                    </div>
-
-                    <div class="form-group">
-                        <select class="form-control form-control-lg">
-                            <option>Brand</option>
-                            <option>Any</option>
-                            <option>New</option>
-                            <option>Semi-New</option>
-                            <option>Damaged</option>
-                            <option>Used</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control form-control-lg">
-                            <option>Brand</option>
-                            <option>Any</option>
-                            <option>New</option>
-                            <option>Semi-New</option>
-                            <option>Damaged</option>
-                            <option>Used</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control form-control-lg">
-                            <option>Brand</option>
-                            <option>Any</option>
-                            <option>New</option>
-                            <option>Semi-New</option>
-                            <option>Damaged</option>
-                            <option>Used</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control form-control-lg">
-                            <option>Brand</option>
-                            <option>Any</option>
-                            <option>New</option>
-                            <option>Semi-New</option>
-                            <option>Damaged</option>
-                            <option>Used</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control form-control-lg">
-                            <option>Brand</option>
-                            <option>Any</option>
-                            <option>New</option>
-                            <option>Semi-New</option>
-                            <option>Damaged</option>
-                            <option>Used</option>
-                        </select>
-                    </div>
-                    <!-- <div class="range-slider clearfix">
-                            <label>Price</label>
-                            <div data-min="0" data-max="150000" data-min-name="min_price" data-max-name="max_price" data-unit="USD"
-                                class="range-slider-ui ui-slider" aria-disabled="false"></div>
-                            <div class="clearfix"></div>
-                        </div> -->
-                    <div class="form-group mb-0">
-                        <button class="search-button btn-primary">Search</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <div class="Featured-container">
     <div class="row">
@@ -151,107 +79,90 @@
     </div>
 
     <div class="row">
+        {% for adopt in all_pets %}
         <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
             <div class="card Featured-card Pet-card">
-                <img class=" card-img-top" src="{% static 'img/german shepherd.jpg' %}" alt="Card image cap"
+                <img class=" card-img-top" src="{{adopt.pet_photo.url}}" alt="Card image cap"
                     style="min-height:262px; max-height: 262px;">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title">{{adopt.pet_title}}</h5>
+                    <p class="card-text">${{adopt.price}}</p>
+                    <p class="card-text">{{adopt.description | safe }}</p>
+                    <button data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-primary">Inquiry</button>
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-            <div class="card Featured-card Pet-card">
-                <img class=" card-img-top" src="{% static 'img/husky.jpg' %}" alt="Card image cap"
-                    style="min-height:262px; max-height: 262px;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-            <div class="card Featured-card Pet-card">
-                <img class=" card-img-top" src="{% static 'img/labrador puppy.jpg' %}" alt="Card image cap"
-                    style="min-height:262px; max-height: 262px;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
+        {% include 'includes/messages.html' %}
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            Contact Us
+                        </h5>
+                    </div>
+                    <form action="{% url 'inquiry' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-row center">
+                            <div class="form-group col-md-6">
+                                <label for="firstname">First Name</label>
+                                <input type="firstname" name="first_name" class="form-control" id="firstname"
+                                    placeholder="firstname" {% if user.is_authenticated %} value="{{user.first_name}}"
+                                    {% else %} name="first_name" {% endif %} required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="lastname">Last Name</label>
+                                <input type="lastname" name="last_name" class="form-control" id="lastname"
+                                    placeholder="lastname" {% if user.is_authenticated %} value="{{user.last_name}}" {%
+                                    else %} name="last_name" {% endif %} required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">City</label>
+                                <input type="text" name="city" class="form-control" id="inputCity" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">State</label>
+                                <input type="text" name="state" class="form-control" id="inputCity" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">Phone Number</label>
+                                <input type="text" name="phone" class="form-control" id="inputCity" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">Email</label>
+                                <input type="text" name="email" class="form-control" id="inputCity" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1"></label>
+                                <select class="form-control" id="exampleFormControlSelect1" name="customer_need">
+                                    <option value="I am interested in Hosting the dog">I am interested in Hosting the
+                                        dog</option>
+                                    <option value="I am interested in Adopting the dog">I am interested in Adopting the
+                                        dog</option>
+                                    <option value="I am interested in Donating for this pet">I am interested in Donating
+                                        for this pet</option>
+                                    <option value="I am interested in playing with the pet">I am interested in playing
+                                        with the pet</option>
+                                </select>
+                            </div>
 
-        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-            <div class="card Featured-card Pet-card">
-                <img class=" card-img-top" src="{% static 'img/Old English Sheep Dog.jpg' %}" alt="Card image cap"
-                    style="min-height:262px; max-height: 262px;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-            <div class="card Featured-card Pet-card">
-                <img class=" card-img-top" src="{% static 'img/Pitbulll.jpg' %}" alt="Card image cap"
-                    style="min-height:262px; max-height: 262px;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-            <div class="card Featured-card Pet-card">
-                <img class=" card-img-top" src="{% static 'img/pomeranian.jpg' %}" alt="Card image cap"
-                    style="min-height:262px; max-height: 262px;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-            <div class="card Featured-card Pet-card">
-                <img class=" card-img-top" src="{% static 'img/poodle mix.jpg' %}" alt="Card image cap"
-                    style="min-height:262px; max-height: 262px;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-            <div class="card Featured-card Pet-card">
-                <img class=" card-img-top" src="{% static 'img/welsh corgi.jpg' %}" alt="Card image cap"
-                    style="min-height:262px; max-height: 262px;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Add a Comment</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1"
+                                    placeholder="Enter the name of the Dog.." rows="3" name="message"
+                                    required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
                 </div>
             </div>
         </div>
 
     </div>
+
 </div>
 
 

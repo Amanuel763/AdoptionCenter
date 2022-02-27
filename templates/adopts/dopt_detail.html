@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card pet-details-card" style="width: 25rem;">
+                <img class="card-img-top" src="{{single_pet.pet_photo.url}}" alt="Card image cap">
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <ul class="list-group">
+                <li class="list-group-item">{{single_pet.pet_title}}</li>
+                <li class="list-group-item">{{single_pet.breed}}</li>
+                <li class="list-group-item">Date of Birth: {{single_pet.year}}</li>
+                <li class="list-group-item">{{single_pet.city}}, {{single_pet.state}}</li>
+                <li class="list-group-item">{{single_pet.price}}</li>
+                <button type="button" class="btn btn-lg btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#myModal">Send
+                    Message</button>
+                <div class="modal fade" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">
+                                    Contact Us
+                                </h5>
+                            </div>
+                            <form>
+                                <div class="form-row center">
+                                    <div class="form-group col-md-6">
+                                        <label for="firstname">First Name</label>
+                                        <input type="firstname" class="form-control" id="firstname"
+                                            placeholder="firstname">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="lastname">Last Name</label>
+                                        <input type="lastname" class="form-control" id="lastname"
+                                            placeholder="lastname">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputCity">City</label>
+                                        <input type="text" class="form-control" id="inputCity">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1"></label>
+                                        <select class="form-control" id="exampleFormControlSelect1">
+                                            <option>I am interested in Hosting the dog</option>
+                                            <option>I am interested in Adopting the dog</option>
+                                            <option>I am interested in Donating for this pet</option>
+                                            <option>I am interested in playing with the pet</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="formGroupExampleInput"
+                                            placeholder="Example input">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Add a Comment</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1"
+                                            rows="3"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

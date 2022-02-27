@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from xmlrpc.client import boolean
 from decouple import config
 import os
 
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'adopt.apps.AdoptConfig',
     'pages.apps.PagesConfig',
+    # 'posts.apps.PostsConfig',
     'contacts.apps.ContactsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -153,8 +155,8 @@ STATIC_ROOT = BASE_DIR / 'static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
@@ -163,3 +165,11 @@ MESSAGE_TAGS = {
 
 SITE_ID = 1
 
+
+#sending email
+
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE', cast=bool)
